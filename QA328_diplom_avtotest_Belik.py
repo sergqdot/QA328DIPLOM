@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
-### Функция для pytest, которая загружает конфигурацию WebDriver
+# Функция для pytest, которая загружает конфигурацию WebDriver
 @pytest.fixture(scope='function')
 def driver(request):
     # путь к драйверу WebDriver
