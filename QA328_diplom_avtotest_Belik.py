@@ -8,7 +8,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 # Функция для pytest, которая загружает конфигурацию WebDriver
 @pytest.fixture(scope='function')
 def driver(request):
-    # Установите путь к вашему драйверу WebDriver
+    # путь к драйверу WebDriver
     driver = webdriver.Firefox()
     driver.maximize_window()
     request.addfinalizer(driver.quit)
@@ -43,34 +43,34 @@ def test_registration(
     driver.implicitly_wait(10)
     driver.get('https://www.aqua-shop.ru')  # Замените на URL вашего сайта
 
-    # Дождитесь автоматического появления всплывающего окна
+    # автоматическое появление всплывающего окна
     WebDriverWait(driver, 15).until(
         EC.visibility_of_element_located((By.ID, 'choose_region'))
     )
 
-    # Нажмите кнопку "Выбрать"
+    # кнопка "Выбрать"
     driver.find_element(By.ID, 'change_region').click()
 
-    # Дождитесь загрузки страницы
+    # загрузка страницы
     WebDriverWait(driver, 20).until(
         EC.presence_of_element_located((By.ID, 'main_wrap'))
     )
 
-    # Нажмите кнопку "Регистрация"
+    # кнопка "Регистрация"
     driver.find_element(By.CSS_SELECTOR, 'a._grey').click()
 
-    # Дождитесь загрузки страницы регистрации
+    # загрузка страницы регистрации
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, 'main_wrap'))
     )
 
-    # Заполните регистрационную форму
+    # Заполнение регистрационной формы
     driver.find_element(By.ID, 'lastname').send_keys(surname)
     driver.find_element(By.ID, 'firstname').send_keys(name)
     driver.find_element(By.ID, 'phone').send_keys(phone)
     driver.find_element(By.ID, 'email_address').send_keys(email)
 
-    # Выберите первый пункт в выпадающем списке метро
+    # Выбор пункта в выпадающем списке метро
     metro_select = driver.find_element(By.ID, 'metro-button')
     ActionChains(driver).click(metro_select).perform()
     metro_option = metro_select.find_element(By.XPATH, '/html/body/div[8]/ul/li[2]/a')
@@ -81,10 +81,10 @@ def test_registration(
     driver.find_element(By.NAME, 'confirmation').send_keys(confirm_password)
     driver.find_element(By.NAME, 'otvet').send_keys(captcha_answer)
 
-    # Нажмите кнопку "Зарегистрироваться"
+    # Нажать кнопку "Зарегистрироваться"
     driver.find_element(By.CSS_SELECTOR, '#main_wrap > div > div.one-row-wrap > div:nth-child(2) > form > div.submit > input').click()
 
-    # Проверьте результат регистрации
+    # Проверка результатов регистрации
     if expected_result:
         # Если ожидается успешная регистрация
         success_message = WebDriverWait(driver, 10).until(
