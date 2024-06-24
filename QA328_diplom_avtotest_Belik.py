@@ -17,7 +17,7 @@ def driver(request):
 # Параметризация теста с различными данными
 test_data = [
     (
-        'Иванов', 'Иван', '4958615315', 'malac52382@lisoren.com', 'Авиаторов', 'cbjdYwu51', 'cbjdYwu51', '4', True, ''),
+        'Иванов', 'Иван', '4958615315', 'tohimiw404@lisoren.com', 'Авиаторов', 'cbjdYwu51', 'cbjdYwu51', '4', True, ''),
 
     ('Иванов', '', '', '', '', '', '', '', False, ' Ошибка в поле "Имя": минимум 2 символа'),
     (
@@ -69,13 +69,6 @@ def test_registration(
     driver.find_element(By.ID, 'firstname').send_keys(name)
     driver.find_element(By.ID, 'phone').send_keys(phone)
     driver.find_element(By.ID, 'email_address').send_keys(email)
-
-    # Выбор пункта в выпадающем списке метро
-    metro_select = driver.find_element(By.ID, 'metro-button')
-    ActionChains(driver).click(metro_select).perform()
-    metro_option = metro_select.find_element(By.XPATH, '/html/body/div[8]/ul/li[2]/a')
-    ActionChains(driver).click(metro_option).perform()
-
     driver.find_element(By.ID, 'street_address').send_keys(street)
     driver.find_element(By.NAME, 'password').send_keys(password)
     driver.find_element(By.NAME, 'confirmation').send_keys(confirm_password)
