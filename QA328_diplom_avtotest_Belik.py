@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
+
 
 # Функция для pytest, которая загружает конфигурацию WebDriver
 @pytest.fixture(scope='function')
@@ -81,7 +81,7 @@ def test_registration(
     if expected_result:
         # Если ожидается успешная регистрация
         success_message = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[2]/div[2]/div/div/h1'))
+            EC.presence_of_element_located((By.XPATH, '//div[1]/div/div[2]/div[2]/div/div/h1'))
         ).text
 
         assert 'Ваш Аккаунт успешно создан!' in success_message
